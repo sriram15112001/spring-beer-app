@@ -38,4 +38,13 @@ public class BeerController {
         headers.add("location", "/api/v1/beer" + savedBeer.getId());
         return new ResponseEntity<>(savedBeer, headers, HttpStatus.CREATED);
     }
+
+    @PutMapping("{beerId}")
+    public ResponseEntity updateBeer(@PathVariable("beerId") UUID id, @RequestBody Beer beer) {
+        boolean isUpdated = this.beerService.updateBeer(id, beer);
+        if(isUpdated) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+    }
 }
