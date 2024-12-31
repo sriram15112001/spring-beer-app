@@ -26,4 +26,5 @@ public class CustomerController {
     public Customer getCustomer(@PathVariable("customerId") UUID id) {
         return this.customerService.getCustomer(id);
     }
+
 }

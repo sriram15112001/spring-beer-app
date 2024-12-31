@@ -4,10 +4,10 @@ import com.deepak.spring6restmvc.model.Beer;
 import com.deepak.spring6restmvc.services.BeerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,4 +31,11 @@ public class BeerController {
         return beerService.getBeerById(id);
     }
 
+    @PostMapping
+    public ResponseEntity<Beer> saveBeer(@RequestBody Beer beer) {
+        HttpHeaders headers = new HttpHeaders();
+        Beer savedBeer = this.beerService.saveBeer(beer);
+        headers.add("location", "/api/v1/beer" + savedBeer.getId());
+        return new ResponseEntity<>(savedBeer, headers, HttpStatus.CREATED);
+    }
 }
