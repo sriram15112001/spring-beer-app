@@ -17,4 +17,6 @@ public interface BeerService {
     Beer saveBeer(Beer beer);
 
     boolean updateBeer(UUID id, Beer beer);
+
+    boolean deleteBeer(UUID id);
 }

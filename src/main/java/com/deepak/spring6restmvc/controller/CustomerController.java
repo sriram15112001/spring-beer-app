@@ -33,7 +33,25 @@ public class CustomerController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("location", "api/v1/customer/" + savedCustomer.getId());
         return new ResponseEntity<>(savedCustomer, headers, HttpStatus.CREATED);
-
     }
+
+    @PutMapping("{customerId}")
+    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID id, @RequestBody Customer customer) {
+        boolean isUpdated = this.customerService.updateCustomer(id, customer);
+        if(isUpdated) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @DeleteMapping("{customerId}")
+    public ResponseEntity deleteCustomer(@PathVariable("customerId") UUID id) {
+        boolean isDeleted = this.customerService.deleteCustomer(id);
+        if(isDeleted) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+    }
+
 
 }

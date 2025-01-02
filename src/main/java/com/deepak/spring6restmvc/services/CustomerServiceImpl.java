@@ -65,4 +65,23 @@ public class CustomerServiceImpl implements CustomerService{
         this.customers.put(savedCustomer.getId(), savedCustomer);
         return savedCustomer;
     }
+
+    @Override
+    public boolean updateCustomer(UUID id, Customer customer) {
+        Customer oldCustomer = this.customers.get(id);
+        oldCustomer.setName(customer.getName());
+        oldCustomer.setVersion(customer.getVersion());
+        oldCustomer.setUpdatedDate(LocalDateTime.now());
+        this.customers.put(id, oldCustomer);
+        return true;
+    }
+
+    @Override
+    public boolean deleteCustomer(UUID id) {
+        if(this.customers.containsKey(id)) {
+            this.customers.remove(id);
+            return true;
+        }
+        return false;
+    }
 }

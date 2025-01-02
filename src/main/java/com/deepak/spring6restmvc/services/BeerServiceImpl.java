@@ -104,4 +104,13 @@ public class BeerServiceImpl implements BeerService {
         this.beerMap.put(id, beer1);
         return true;
     }
+
+    @Override
+    public boolean deleteBeer(UUID id) {
+        if(this.beerMap.containsKey(id)){
+            this.beerMap.remove(id);
+            return true;
+        }
+        return false;
+    }
 }
