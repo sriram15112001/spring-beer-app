@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer1 = Customer.builder()
                 .name("customer1")
                 .id(UUID.randomUUID())
-                .version("1")
+                .version(1)
                 .createdDate(LocalDateTime.now())
                 .updatedDate(LocalDateTime.now())
                 .build();
@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer2 = Customer.builder()
                 .name("customer2")
                 .id(UUID.randomUUID())
-                .version("1")
+                .version(1)
                 .createdDate(LocalDateTime.now())
                 .updatedDate(LocalDateTime.now())
                 .build();
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer3 = Customer.builder()
                 .name("customer3")
                 .id(UUID.randomUUID())
-                .version("1")
+                .version(1)
                 .createdDate(LocalDateTime.now())
                 .updatedDate(LocalDateTime.now())
                 .build();

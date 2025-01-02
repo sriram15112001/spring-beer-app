@@ -1,10 +1,9 @@
 package com.deepak.spring6restmvc.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,10 +16,13 @@ import java.util.UUID;
 @Builder
 public class CustomerEntity {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    @Column(length = 36, columnDefinition = "varchar", nullable = false, updatable = false)
     private UUID id;
     private String name;
     @Version
-    private String version;
+    private Integer version;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 }
